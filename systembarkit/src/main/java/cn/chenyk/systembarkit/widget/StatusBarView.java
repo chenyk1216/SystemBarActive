@@ -12,7 +12,7 @@ import cn.chenyk.systembarkit.utils.CommUtil;
 
 /**
  * Created by chenyk on 2017/4/9.
- * 状态栏视图
+ * the statusbar view
  */
 
 public class StatusBarView extends View {
@@ -26,9 +26,9 @@ public class StatusBarView extends View {
     }
 
     /**
-     * 生成一个和状态栏大小相同的矩形条
+     * To generate an status bar with the same size of rectangle
      *
-     * @return 状态栏矩形条
+     * @return
      */
     private static StatusBarView createStatusBarView(Activity activity, int color) {
         StatusBarView statusBarView = new StatusBarView(activity);
@@ -39,7 +39,7 @@ public class StatusBarView extends View {
     }
 
     /**
-     * 添加状态栏
+     * add a statusBarView
      *
      * @param activity
      * @param color

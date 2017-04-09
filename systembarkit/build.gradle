@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -13,6 +15,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,4 +35,20 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
+}
+
+
+task javadoc(type: Javadoc) {
+    options.encoding = 'UTF-8'
+    source = 'src/main/java'
+}
+
+//upload to Bintray settings
+publish {
+    userOrg = 'chenyk1216'
+    groupId = 'cn.chenyk.systembarlib'
+    artifactId = 'systembarlib'
+    version = '1.0.0'
+    description = 'Provides methods to set the status bar'
+    website = "https://github.com/chenykKits/SystemBarActive"
 }

@@ -5,18 +5,11 @@ import android.graphics.Color;
 
 /**
  * Created by chenyk on 2017/4/9.
- * 公用工具类
+ * common util
  */
 
 public class CommUtil {
 
-    /**
-     * 获取颜色值
-     *
-     * @param activity
-     * @param object
-     * @return
-     */
     public static int getColor(Activity activity, Object object) {
         if (object instanceof String) {// "#666666"
             return Color.parseColor((String) object);
@@ -27,15 +20,8 @@ public class CommUtil {
         } else throw new IllegalStateException("The current color is not found");
     }
 
-    /**
-     * 获取文本值
-     *
-     * @param activity
-     * @param object
-     * @return
-     */
     public static String getString(Activity activity, Object object) {
-        if (object instanceof String)//"标题"
+        if (object instanceof String)//"title"
             return (String) object;
         else if (object instanceof Integer && (Integer) object > 0) //R.string.app_name
             return activity.getResources().getString((Integer) object);
@@ -43,11 +29,8 @@ public class CommUtil {
     }
 
     /**
-     * 计算颜色值
+     * calculateColor
      *
-     * @param color color值
-     * @param alpha alpha值
-     * @return 最终颜色
      */
     public static int calculateColorWithAlpha(int color, int alpha) {
         float a = 1 - alpha / 255f;
@@ -61,9 +44,8 @@ public class CommUtil {
     }
 
     /**
-     * 获取状态栏高度
+     * statusBarHeight
      *
-     * @return 状态栏高度
      */
     public static int getStatusBarHeight(Activity activity) {
         int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
