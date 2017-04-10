@@ -37,18 +37,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
-task javadoc(type: Javadoc) {
-    options.encoding = 'UTF-8'
-    source = 'src/main/java'
-}
-
 //upload to Bintray settings
 publish {
     userOrg = 'chenyk1216'
-    groupId = 'cn.chenyk.systembarlib'
+    groupId = 'cn.chenyk'
     artifactId = 'systembarlib'
-    version = '1.0.0'
+    version = '1.0.1'
     description = 'Provides methods to set the status bar'
     website = "https://github.com/chenykKits/SystemBarActive"
 }

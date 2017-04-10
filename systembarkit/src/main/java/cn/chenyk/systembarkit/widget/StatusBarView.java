@@ -12,7 +12,6 @@ import cn.chenyk.systembarkit.utils.CommUtil;
 
 /**
  * Created by chenyk on 2017/4/9.
- * the statusbar view
  */
 
 public class StatusBarView extends View {

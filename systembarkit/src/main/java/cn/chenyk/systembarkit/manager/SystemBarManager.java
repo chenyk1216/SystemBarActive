@@ -12,7 +12,8 @@ import cn.chenyk.systembarkit.widget.StatusBarView;
 
 /**
  * Created by chenyk on 2017/4/9.
- * set tintType,color,alpha
+ * 系统栏管理类
+ * 目前仅提供状态栏操作，后续增加导航栏
  */
 
 public class SystemBarManager {
