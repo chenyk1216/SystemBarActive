@@ -12,6 +12,7 @@ import cn.chenyk.systembarkit.utils.CommUtil;
 
 /**
  * Created by chenyk on 2017/4/9.
+ * the view of status bar
  */
 
 public class StatusBarView extends View {
@@ -27,7 +28,7 @@ public class StatusBarView extends View {
     /**
      * To generate an status bar with the same size of rectangle
      *
-     * @return
+     * @return a statusbar view instance
      */
     private static StatusBarView createStatusBarView(Activity activity, int color) {
         StatusBarView statusBarView = new StatusBarView(activity);
@@ -40,8 +41,8 @@ public class StatusBarView extends View {
     /**
      * add a statusBarView
      *
-     * @param activity
-     * @param color
+     * @param activity the context
+     * @param color status bar color
      */
     public static void addStatusBarView(Activity activity, int color) {
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();

@@ -5,7 +5,7 @@ import android.graphics.Color;
 
 /**
  * Created by chenyk on 2017/4/9.
- * common util
+ * provide some common utils
  */
 
 public class CommUtil {
@@ -29,8 +29,10 @@ public class CommUtil {
     }
 
     /**
-     * calculateColor
-     *
+     * calculate color
+     * @param color initial color
+     * @param alpha initial alpha
+     * @return final color
      */
     public static int calculateColorWithAlpha(int color, int alpha) {
         float a = 1 - alpha / 255f;
@@ -44,8 +46,9 @@ public class CommUtil {
     }
 
     /**
-     * statusBarHeight
-     *
+     * get the height of the status bar
+     * @param activity context
+     * @return height of the status bar
      */
     public static int getStatusBarHeight(Activity activity) {
         int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
