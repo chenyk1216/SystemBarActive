@@ -23,7 +23,7 @@
 ```
     compile 'android.dev.chenyk:systembarlib:1.1.0'
 ```
-2、eclipse用户，将下载下来的jar包放入libs包中，[点我进入下载页](https://github.com/chenykKits/SystemBarActive/raw/master/systembarlib-1.1.0.jar)
+2、eclipse用户，将下载下来的jar包放入libs包中，[点我下载](https://github.com/chenykKits/SystemBarActive/raw/master/systembarlib-1.1.0.jar)
 
 # **方法调用**
 
