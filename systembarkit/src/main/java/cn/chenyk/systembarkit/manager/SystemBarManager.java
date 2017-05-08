@@ -12,8 +12,7 @@ import cn.chenyk.systembarkit.widget.StatusBarView;
 
 /**
  * Created by chenyk on 2017/4/9.
- * 系统栏管理类
- * 目前仅提供状态栏操作，后续增加导航栏
+ * 系统栏管理类，目前仅提供状态栏操作，后续增加导航栏
  */
 
 public class SystemBarManager {
@@ -23,7 +22,7 @@ public class SystemBarManager {
     private int mStatusBarColor;
 
     public enum TintType {
-        GRADIENT, PURECOLOR  //gradient type，pureColor type
+        GRADIENT, PURECOLOR  //渐变类型，纯色类型
     }
 
     private SystemBarManager(Activity activity, TintType tintType, int alpha, int statusBarColor) {
@@ -35,7 +34,7 @@ public class SystemBarManager {
     }
 
     /**
-     * window configs
+     * 窗口相关配置
      */
     private void windowConfig() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -71,6 +70,15 @@ public class SystemBarManager {
     }
 
     /**
+     * 快速创建实例，保留原先设置选项
+     *
+     * @return
+     */
+    public builder newBuilder() {
+        return new builder(this);
+    }
+
+    /**
      * builder class
      */
     public static class builder {
@@ -79,6 +87,13 @@ public class SystemBarManager {
         private TintType tintType = TintType.PURECOLOR;  //default tintType
         private int alpha = DEFAULT_ALPHA;
         private int statusBarColor;
+
+        private builder(SystemBarManager manager) {
+            activity = manager.mActivity;
+            tintType = manager.mTintType;
+            alpha = manager.mAlpha;
+            statusBarColor = manager.mStatusBarColor;
+        }
 
         public builder(Activity activity) {
             this.activity = activity;
@@ -101,7 +116,7 @@ public class SystemBarManager {
         }
 
         /**
-         * build SystemBarManager instance
+         * 创建实例并返回
          *
          * @return a SystemBarManager instance
          */
