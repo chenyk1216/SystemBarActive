@@ -21,7 +21,7 @@
 1、Android studio用户，可在项目中的 build.gradle 文件中添加如下引用
 
 ```
-    compile 'android.dev.chenyk:systembarlib:1.1.0'
+    compile 'android.dev.chenyk:systembarlib:1.2.0'
 ```
 2、eclipse用户，将下载下来的jar包放入libs包中，[点我下载](https://github.com/chenykKits/SystemBarActive/raw/master/systembarlib-1.1.0.jar)
 
