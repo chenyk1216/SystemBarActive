@@ -1,6 +1,7 @@
 package cn.chenyk.systembarlib;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import cn.chenyk.systembarkit.manager.SystemBarManager;
 
 public class MainActivity extends Activity {
     private Button btnActiveResult;
@@ -20,6 +23,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new SystemBarManager.builder(this)
+                .setStatusBarColor(Color.parseColor("#ff5645"))//状态栏颜色
+                .build();
+
         seekbar = (SeekBar) findViewById(R.id.seekbar);
         tintTypeGroup = (RadioGroup) findViewById(R.id.tintType_group);
         colorGroup = (RadioGroup) findViewById(R.id.color_group);

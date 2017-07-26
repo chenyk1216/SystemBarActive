@@ -42,7 +42,7 @@ publish {
     userOrg = 'chenyk1216'
     groupId = 'android.dev.chenyk'
     artifactId = 'systembarlib'
-    version = '1.2.0'
+    version = '1.3.0'
     description = 'Provides methods to set the status bar'
     website = "https://github.com/chenykKits/SystemBarActive"
 }

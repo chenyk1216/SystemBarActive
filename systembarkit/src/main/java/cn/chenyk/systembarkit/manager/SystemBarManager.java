@@ -2,8 +2,10 @@ package cn.chenyk.systembarkit.manager;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 
 import cn.chenyk.systembarkit.utils.CommUtil;
@@ -20,6 +22,7 @@ public class SystemBarManager {
     private TintType mTintType;
     private int mAlpha;
     private int mStatusBarColor;
+    private Window mWindow;
 
     public enum TintType {
         GRADIENT, PURECOLOR  //渐变类型，纯色类型
@@ -27,6 +30,7 @@ public class SystemBarManager {
 
     private SystemBarManager(Activity activity, TintType tintType, int alpha, int statusBarColor) {
         this.mActivity = activity;
+        this.mWindow = mActivity.getWindow();
         this.mTintType = tintType;
         this.mAlpha = alpha;
         this.mStatusBarColor = CommUtil.getColor(mActivity, statusBarColor);
@@ -37,35 +41,35 @@ public class SystemBarManager {
      * 窗口相关配置
      */
     private void windowConfig() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        if (Build.VERSION.SDK_INT >= 23) {//安卓6.0及以上
             if (TintType.PURECOLOR == mTintType) {
-                mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                mActivity.getWindow().setStatusBarColor(CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+                mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                mWindow.setStatusBarColor(CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
             } else if (TintType.GRADIENT == mTintType) {
-                mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
             }
-            setRootView(mActivity);
-//            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        } else if (Build.VERSION.SDK_INT < 23 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//安卓4.4~6.0
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
-            setRootView(mActivity);
         }
+        setRootView();
     }
 
     /**
-     * rootview settings
+     * 根布局设置
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private static void setRootView(Activity activity) {
+    private void setRootView() {
         try {
-            ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+            ViewGroup rootView = (ViewGroup) ((ViewGroup) mActivity.findViewById(android.R.id.content)).getChildAt(0);
             rootView.setFitsSystemWindows(true);
             rootView.setClipToPadding(true);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,9 +86,9 @@ public class SystemBarManager {
      * builder class
      */
     public static class builder {
-        private static final int DEFAULT_ALPHA = 0;  //default alpha
+        private static final int DEFAULT_ALPHA = 0;  //默认全透明
         private Activity activity;
-        private TintType tintType = TintType.PURECOLOR;  //default tintType
+        private TintType tintType = TintType.PURECOLOR;  //默认纯色效果
         private int alpha = DEFAULT_ALPHA;
         private int statusBarColor;
 
@@ -118,7 +122,7 @@ public class SystemBarManager {
         /**
          * 创建实例并返回
          *
-         * @return a SystemBarManager instance
+         * @return
          */
         public SystemBarManager build() {
             return new SystemBarManager(activity, tintType, alpha, statusBarColor);
