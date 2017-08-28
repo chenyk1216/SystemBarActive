@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.IntRange;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,12 +42,9 @@ public class SystemBarManager {
     /**
      * 窗口相关配置
      */
-    private void windowConfig() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-        if (Build.VERSION.SDK_INT >= 23) {//安卓6.0及以上
-            mWindow.setStatusBarColor(Color.TRANSPARENT);
-
-
+//    private void windowConfig() {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+//        if (Build.VERSION.SDK_INT >= 23) {//安卓6.0及以上
 //            if (TintType.PURECOLOR == mTintType) {
 //                mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 //                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -57,8 +55,18 @@ public class SystemBarManager {
 //                StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
 //            }
 //        } else if (Build.VERSION.SDK_INT < 23 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//安卓4.4~6.0
-            mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //            StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+//        }
+//        setRootView();
+//    }
+    private void windowConfig() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        if (Build.VERSION.SDK_INT >= 23) {//安卓6.0及以上
+            mWindow.setStatusBarColor(Color.TRANSPARENT);
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        } else if (Build.VERSION.SDK_INT < 23 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//安卓4.4~6.0
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             StatusBarView.addStatusBarView(mActivity);
         }
         setRootView();
@@ -113,7 +121,7 @@ public class SystemBarManager {
             return this;
         }
 
-        public builder setAlpha(int alpha) {
+        public builder setAlpha(@IntRange(from = 0, to = 255) int alpha) {
             if (alpha >= 0 & alpha <= 255)
                 this.alpha = alpha;
             return this;

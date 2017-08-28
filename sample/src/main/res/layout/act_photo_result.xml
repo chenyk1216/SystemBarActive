@@ -5,9 +5,8 @@
     android:background="@mipmap/transparent_bg"
     android:orientation="vertical">
 
+
     <!--<ImageView-->
-    <!--android:fitsSystemWindows="true"-->
-    <!--android:cropToPadding="true"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="240dp"-->
     <!--android:scaleType="centerCrop"-->
