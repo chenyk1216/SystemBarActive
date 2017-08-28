@@ -17,12 +17,14 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    //解决乱码问题
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
 }
-//解决乱码问题
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

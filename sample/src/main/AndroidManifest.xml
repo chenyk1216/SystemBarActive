@@ -19,6 +19,9 @@
         <activity
             android:name=".ResultActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".PhotoResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

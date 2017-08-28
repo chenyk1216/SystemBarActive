@@ -2,6 +2,7 @@ package cn.chenyk.systembarkit.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class StatusBarView extends View {
         super(context, attrs);
     }
 
+
     /**
      * To generate an status bar with the same size of rectangle
      *
@@ -42,7 +44,16 @@ public class StatusBarView extends View {
      * add a statusBarView
      *
      * @param activity the context
-     * @param color status bar color
+     */
+    public static void addStatusBarView(Activity activity) {
+        addStatusBarView(activity, Color.TRANSPARENT);
+    }
+
+    /**
+     * add a statusBarView
+     *
+     * @param activity the context
+     * @param color    status bar color
      */
     public static void addStatusBarView(Activity activity, int color) {
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();

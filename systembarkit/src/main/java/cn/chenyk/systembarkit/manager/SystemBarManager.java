@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,18 +44,22 @@ public class SystemBarManager {
     private void windowConfig() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         if (Build.VERSION.SDK_INT >= 23) {//安卓6.0及以上
-            if (TintType.PURECOLOR == mTintType) {
-                mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                mWindow.setStatusBarColor(CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
-            } else if (TintType.GRADIENT == mTintType) {
-                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
-            }
-        } else if (Build.VERSION.SDK_INT < 23 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//安卓4.4~6.0
+            mWindow.setStatusBarColor(Color.TRANSPARENT);
+
+
+//            if (TintType.PURECOLOR == mTintType) {
+//                mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                mWindow.setStatusBarColor(CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+//            } else if (TintType.GRADIENT == mTintType) {
+//                mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+//            }
+//        } else if (Build.VERSION.SDK_INT < 23 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//安卓4.4~6.0
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+//            StatusBarView.addStatusBarView(mActivity, CommUtil.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+            StatusBarView.addStatusBarView(mActivity);
         }
         setRootView();
     }

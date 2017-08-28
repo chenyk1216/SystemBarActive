@@ -1,6 +1,7 @@
 package cn.chenyk.systembarlib;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import cn.chenyk.systembarkit.manager.SystemBarManager;
 
 public class MainActivity extends Activity {
-    private Button btnActiveResult;
+    private Button btnActiveResult, btnPhotoResult;
     private RadioGroup tintTypeGroup, colorGroup;
     private String tintTypeStr, colorStr;
     private TextView tvAlpha;
@@ -72,6 +73,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 ResultActivity.startCurrentActivity(MainActivity.this, tintTypeStr,
                         tvAlpha.getText().toString(), colorStr);
+            }
+        });
+
+        btnPhotoResult = (Button) findViewById(R.id.btn_photo_result);
+        btnPhotoResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PhotoResultActivity.class));
             }
         });
     }

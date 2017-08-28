@@ -30,11 +30,15 @@ public class CommUtil {
 
     /**
      * calculate color
+     *
      * @param color initial color
      * @param alpha initial alpha
      * @return final color
      */
     public static int calculateColorWithAlpha(int color, int alpha) {
+        if (alpha == 0) {
+            return color;
+        }
         float a = 1 - alpha / 255f;
         int red = color >> 16 & 0xff;
         int green = color >> 8 & 0xff;
@@ -47,6 +51,7 @@ public class CommUtil {
 
     /**
      * get the height of the status bar
+     *
      * @param activity context
      * @return height of the status bar
      */
