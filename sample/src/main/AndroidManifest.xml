@@ -20,7 +20,10 @@
             android:name=".ResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PhotoResultActivity"
+            android:name=".PartImageViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FullBgImageViewActivity"
             android:screenOrientation="portrait" />
     </application>
 

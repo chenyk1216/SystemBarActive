@@ -57,11 +57,30 @@ public class StatusBarView extends View {
      */
     public static void addStatusBarView(Activity activity, int color) {
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        StatusBarView statusBarView;
         if (decorView.getChildAt(0) instanceof StatusBarView) {
-            decorView.getChildAt(0).setBackgroundColor(color);
+            statusBarView = (StatusBarView) decorView.getChildAt(0);
+            if (statusBarView.getVisibility() == GONE) {
+                statusBarView.setVisibility(VISIBLE);
+            }
         } else {
-            StatusBarView statusView = createStatusBarView(activity, color);
-            decorView.addView(statusView);
+            statusBarView = createStatusBarView(activity, color);
+            decorView.addView(statusBarView);
+        }
+    }
+
+    /**
+     * hide the statusBarView
+     *
+     * @param activity
+     */
+    public static void hideStatusBarView(Activity activity) {
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        if (decorView.getChildAt(0) instanceof StatusBarView) {
+            StatusBarView statusBarView = (StatusBarView) decorView.getChildAt(0);
+            if (statusBarView.getVisibility() == VISIBLE) {
+                statusBarView.setVisibility(GONE);
+            }
         }
     }
 }

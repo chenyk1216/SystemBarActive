@@ -122,10 +122,18 @@
         android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/btn_photo_result"
+        android:id="@+id/btn_full_bg_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="图片效果"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/btn_part_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="setPartImageView(部分图片效果)"
         android:textColor="@android:color/black" />
 </LinearLayout>

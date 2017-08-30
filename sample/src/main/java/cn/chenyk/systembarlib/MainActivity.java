@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import cn.chenyk.systembarkit.manager.SystemBarManager;
 
-public class MainActivity extends Activity {
-    private Button btnActiveResult, btnPhotoResult;
+public class MainActivity extends Activity implements View.OnClickListener {
+    private Button btnActiveResult, btnFullBgIv, btnPartIv;
     private RadioGroup tintTypeGroup, colorGroup;
     private String tintTypeStr, colorStr;
     private TextView tvAlpha;
     private SeekBar seekbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         new SystemBarManager.builder(this)
-                .setStatusBarColor(Color.parseColor("#ff5645"))//状态栏颜色
+                .setSystemBarColor(Color.parseColor("#ff5645"))//状态栏颜色
                 .build();
 
         seekbar = (SeekBar) findViewById(R.id.seekbar);
@@ -76,13 +77,31 @@ public class MainActivity extends Activity {
             }
         });
 
-        btnPhotoResult = (Button) findViewById(R.id.btn_photo_result);
-        btnPhotoResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,PhotoResultActivity.class));
-            }
-        });
+        init();
     }
 
+    /**
+     * 初始化操作
+     */
+    private void init() {
+        btnPartIv = (Button) findViewById(R.id.btn_part_iv);
+        btnFullBgIv = (Button) findViewById(R.id.btn_full_bg_iv);
+
+        btnPartIv.setOnClickListener(this);
+        btnFullBgIv.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_part_iv:
+                startActivity(new Intent(MainActivity.this, PartImageViewActivity.class));
+                break;
+            case R.id.btn_full_bg_iv:
+                startActivity(new Intent(MainActivity.this, FullBgImageViewActivity.class));
+                break;
+            default:
+                break;
+        }
+    }
 }
